@@ -65,17 +65,18 @@ body {
 table {
   width: 100%;
 }
-table thead td {
+table td {
+  padding: 8px;
   width: fit-content;
 }
-table tbody tr:nth-child(odd) {
+table tbody tr:nth-child(even) {
   background-color: #dddddd;
 }
 th {
   min-width: 9%;
   max-width: fit-content;
 }
-table thead tr td:not(:first-child):not(:last-child) {
+table tr td:not(:first-child):not(:last-child) {
   border: 1px solid #afafaf;
 }
 .footer {

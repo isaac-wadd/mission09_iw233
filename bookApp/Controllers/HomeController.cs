@@ -59,6 +59,8 @@ namespace bookApp.Controllers {
 
         [HttpGet]
         public IActionResult Edit(int bookID) {
+            ViewBag.categories = _bookCtxt.categories.ToList();
+            ViewBag.classifications = _bookCtxt.classifications.ToList();
             var book = _bookCtxt.books.Single(b => b.bookID == bookID);
             return View("Book", book);
         }

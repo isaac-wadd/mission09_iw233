@@ -42,7 +42,7 @@ namespace bookApp.Infrastructure {
                 tbLI.InnerHtml.AppendHtml(tbA);
                 final.InnerHtml.AppendHtml(tbLI);
             }
-            tho.Content.AppendHtml(final.InnerHtml);
+            tho.Content.AppendHtml(final);
         }
     }
 }
