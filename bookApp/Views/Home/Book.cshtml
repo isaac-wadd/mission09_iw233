@@ -1,0 +1,69 @@
+
+@{
+    ViewData["Title"] = ViewBag.bookFormCtxt + " Book";
+}
+
+@model bookApp.Models.Book
+
+<h2>@ViewBag.bookFormCtxt Book</h2>
+<div>
+    <form method="post" asp-controller="Home" asp-action="@ViewBag.bookFormCtxt">
+        <i><div asp-validation-summary="All" class="validation"></div></i>
+        <label asp-for="title">title</label>
+        <br>
+        <input type="text" name="title" asp-for="title">
+        <br>
+        <br>
+        <label asp-for="author">author</label>
+        <br>
+        <input type="text" name="author" asp-for="author">
+        <br>
+        <br>
+        <label asp-for="publisher">publisher</label>
+        <br>
+        <input type="text" name="publisher" asp-for="publisher">
+        <br>
+        <br>
+        <label asp-for="ISBN">ISBN</label>
+        <br>
+        <input type="text" name="ISBN" asp-for="ISBN">
+        <br>
+        <br>
+        <label asp-for="classificationID">classification</label>
+        <br>
+        <select name="classificationID" asp-for="classificationID">
+            <option value="">- select a classification -</option>
+            @foreach (Classification c in ViewBag.classifications) {
+                <option value="@c.classificationID">@c.classificationName</option>
+            }
+        </select>
+        <br>
+        <br>
+        <label asp-for="categoryID">category</label>
+        <br>
+        <select name="categoryID" asp-for="categoryID">
+            <option value="">- select a category -</option>
+            @foreach (Category c in ViewBag.categories) {
+                <option value="@c.categoryID">@c.categoryName</option>
+            }
+        </select>
+        <br>
+        <br>
+        <label asp-for="pageCount">page count</label>
+        <br>
+        @if (ViewBag.bookFormCtxt == "Add") {
+            <input type="number" name="pageCount" asp-for="pageCount" value="100">
+        }
+        else {
+            <input type="number" name="pageCount" asp-for="pageCount">
+        }
+        <br>
+        <br>
+        <label asp-for="price">price</label>
+        <br>
+        <input type="number" step="0.01" min="0.01" name="price" asp-for="price">
+        <br>
+        <button type="submit" class="btn btn-primary">submit</button>
+        <br>
+    </form>
+</div>

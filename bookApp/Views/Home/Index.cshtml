@@ -1,0 +1,97 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model BooksViewModel
+
+<div class="text-center">
+    <br>
+    <h1 class="display-4">Books</h1>
+    <br>
+    <h3>sort by any field</h3>
+</div>
+<br>
+<br>
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                <button class="btn btn-secondary" style="width: 100%;">title</button>
+            </th>
+            <th>
+                <button class="btn btn-secondary" style="width: 100%;">author</button>
+            </th>
+            <th>
+                <button class="btn btn-secondary" style="width: 100%;">publisher</button>
+            </th>
+            <th>
+                <button class="btn btn-secondary" style="width: 100%;">ISBN</button>
+            </th>
+            <th>
+                <button class="btn btn-secondary" style="width: 100%;">classification</button>
+            </th>
+            <th>
+                <button class="btn btn-secondary" style="width: 100%;">category</button>
+            </th>
+            <th>
+                <button class="btn btn-secondary" style="width: 100%;">page count</button>
+            </th>
+            <th>
+                <button class="btn btn-secondary" style="width: 100%;">price</button>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model.books) {
+            <tr>
+                <td>
+                    <a asp-controller="Home" asp-action="Edit" asp-route-bookID="@book.bookID">
+                        <button class="btn btn-secondary">edit</button>
+                    </a>
+                </td>
+                <td>
+                    @book.title
+                </td>
+                <td>
+                    @book.author
+                </td>
+                <td>
+                    @book.publisher
+                </td>
+                <td>
+                    @book.ISBN
+                </td>
+                <td>
+                    @book.classification.classificationName
+                </td>
+                <td>
+                    @book.category.categoryName
+                </td>
+                <td>
+                    @book.pageCount
+                </td>
+                <td>
+                    @book.price
+                </td>
+                <td>
+                    <a asp-controller="Home" asp-action="Delete" asp-route-bookID="@book.bookID">
+                        <button class="btn btn-primary">delete</button>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br>
+<div class="text-center">
+    <div page-blah="@Model.pagesInfo"></div>
+      @* <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul> *@
+</div>
