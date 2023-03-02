@@ -22,7 +22,13 @@ namespace bookApp.Controllers {
         public IActionResult Index(int pageNum = 1) {
             int pageSize = 10;
             var x = new BooksViewModel {
-                books = _bookCtxt.books.Include(b => b.category).Include(b => b.classification).OrderBy(b => b.title).Skip((pageNum - 1) * pageSize).Take(pageSize).ToList(),
+                books = _bookCtxt.books
+                    .Include(b => b.category)
+                    .Include(b => b.classification)
+                    .OrderBy(b => b.title)
+                    .Skip((pageNum - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList(),
 
                 pagesInfo = new PagesInfoModel {
                     totalBooks = _bookCtxt.books.Count(),
