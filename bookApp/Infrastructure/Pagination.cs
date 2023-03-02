@@ -34,7 +34,13 @@ namespace bookApp.Infrastructure {
                 TagBuilder tbLI = new TagBuilder("li");
                 TagBuilder tbA = new TagBuilder("a");
 
-                tbLI.Attributes["class"] = "page-item";
+                if (i == pageModel.currentPage) {
+                    tbLI.Attributes["class"] = "page-item active";
+                }
+                else {
+                    tbLI.Attributes["class"] = "page-item";
+                }
+                tbLI.Attributes["id"] = pageAction.ToString();
                 tbA.Attributes["href"] = uh.Action(pageAction, new { pageNum = i });
                 tbA.Attributes["class"] = "page-link";
                 tbA.InnerHtml.Append(i.ToString());
