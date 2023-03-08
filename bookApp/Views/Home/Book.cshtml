@@ -8,6 +8,9 @@
 <h2>@ViewBag.bookFormCtxt Book</h2>
 <div>
     <form method="post" asp-controller="Home" asp-action="@ViewBag.bookFormCtxt">
+        @if (ViewBag.bookFormCtxt == "Edit") {
+            <input type="hidden" value="@Model.bookID" asp-for="bookID">
+        }
         <i><div asp-validation-summary="All" class="validation"></div></i>
         <label asp-for="title">title</label>
         <br>

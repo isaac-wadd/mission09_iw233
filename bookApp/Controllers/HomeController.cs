@@ -68,9 +68,23 @@ namespace bookApp.Controllers {
         [HttpPost]
         public IActionResult Edit(Book book) {
             if (ModelState.IsValid) {
+                _bookCtxt.Update(book);
+                _bookCtxt.SaveChanges();
                 return RedirectToAction("Index");
             }
-            else { return View("Book", book); }
+            else {
+                ViewBag.categories = _bookCtxt.categories.ToList();
+                ViewBag.classifications = _bookCtxt.classifications.ToList();
+                return View("Book", book);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int bookID) {
+            var book = _bookCtxt.books.Single(b => b.bookID == bookID);
+            _bookCtxt.Remove(book);
+            _bookCtxt.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
